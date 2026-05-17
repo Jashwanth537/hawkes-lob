@@ -1,3 +1,6 @@
 build/
 *.csv
 *.log
+hawkes/data/
+hawkes/build/
+hawkes/results/*.csv
