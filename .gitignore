@@ -4,3 +4,4 @@ build/
 hawkes/data/
 hawkes/build/
 hawkes/results/*.csv
+hawkes/dev.ipynb

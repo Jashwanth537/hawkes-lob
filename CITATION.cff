@@ -1,0 +1,58 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - given-names: Jashwanth
+    family-names: Mummalaneni
+    affiliation: IIT Guwahati 2024
+title: "Hawkes Process Calibration of Cryptocurrency Limit Order Book Data"
+abstract: >
+  Bivariate Sum-of-Exponentials Hawkes calibration on Binance BTC/USDT and
+  ETH/USDT market order flow (144-145 one-hour windows, May 2026). Key
+  findings: UTC-driven intraday seasonality in self-excitation (η 9-12%
+  higher at NYSE open, OLS R²=0.35, p<0.001); η-RV Spearman correlation
+  ρ=0.84; 91-97% GOF improvement via 100µs sweep-fill aggregation across
+  all UTC hours.
+version: "1.0.0"
+date-released: "2026-05-19"
+url: "https://github.com/Jashwanth537/hawkes-lob"
+license: MIT
+references:
+  - type: article
+    authors:
+      - family-names: Anantha
+      - family-names: Jain
+    title: >
+      Forecasting high frequency order flow imbalance using Hawkes processes
+    journal: Computational Economics
+    year: 2025
+    url: "https://arxiv.org/abs/2408.03594"
+  - type: article
+    authors:
+      - family-names: Anantha
+      - family-names: Jain
+      - family-names: Maiti
+    title: Order Book Filtration and Directional Signal Extraction at High Frequency
+    year: 2025
+    url: "https://arxiv.org/abs/2507.22712"
+  - type: article
+    authors:
+      - family-names: Ogata
+        given-names: Y.
+    title: >
+      Statistical models for earthquake occurrences and residual analysis
+      for point processes
+    journal: "Journal of the American Statistical Association"
+    volume: 83
+    issue: 401
+    year: 1988
+  - type: article
+    authors:
+      - family-names: Bacry
+      - family-names: Jaisson
+      - family-names: Muzy
+    title: Estimation of slowly decreasing Hawkes kernels
+    journal: Quantitative Finance
+    volume: 16
+    issue: 8
+    year: 2016
