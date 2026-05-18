@@ -1,6 +1,5 @@
-# hawkes-lob
+# Hawkes Process Calibration of Cryptocurrency LOB Data  
 
-**Hawkes Process Calibration of Cryptocurrency Limit Order Book Data**  
 Bivariate Sum-of-Exponentials Hawkes calibration on Binance BTC/USDT and ETH/USDT market order flow. Self-excitation is 10 to 19% stronger at UTC 13:30 (NYSE open) than the rest-of-day baseline for both assets, and the branching ratio η correlates with realized volatility at ρ = 0.84, confirming that high-η windows are also the high-volatility windows.
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
@@ -20,11 +19,11 @@ A single aggressive market order on Binance sweeps multiple price levels, genera
 
 Approximately 62% of raw `aggTrade` BUY events in the first window are sub-100µs sweep fills from the same originating market order, not distinct aggressive orders.
 
-![GOF sweep comparison](results/gof_sweep_comparison.png)
+![GOF sweep comparison](hawkes/results/gof_sweep_comparison.png)
 
 ### 2 · Branching ratio η predicts realized volatility within the hour
 
-![η vs Realized Volatility](results/eta_vs_rv.png)
+![η vs Realized Volatility](hawkes/results/eta_vs_rv.png)
 
 | Asset | ρ(η, RV) | p-value | n windows |
 |-------|----------|---------|-----------|
@@ -37,7 +36,7 @@ UTC hour alone explains **35 to 39%** of cross-window variance in η (OLS F-test
 
 Despite operating 24/7 with no formal session boundary, crypto market microstructure is not time-homogeneous. Self-excitation peaks at UTC 13:30 (NYSE regular open, 9:30 AM EDT) for both assets.
 
-![Kernel norms by UTC hour](results/kernel_norms_by_hour.png)
+![Kernel norms by UTC hour](hawkes/results/kernel_norms_by_hour.png)
 
 > Magnitudes are from raw `aggTrade` streams. Approximately 62% of raw BUY events in the first window are sub-100µs sweep fills (see Goodness-of-Fit below); the fraction varies by UTC hour. The qualitative UTC-13:30 pattern is expected to persist after sweep aggregation, but absolute magnitudes would shrink.
 
@@ -50,9 +49,9 @@ Despite operating 24/7 with no formal session boundary, crypto market microstruc
 | φ_SS1 (fast SELL self-excitation) | +12.6% | +7.0% | 0.006 / 0.020 |
 | φ_SB2 (slow SELL→BUY cross) | +60.3% | +115.5% | 0.042 / 0.001 |
 
-The NYSE-open hypothesis was pre-specified in Section 1 of [hawkes_lob_summary.md](hawkes_lob_summary.md) before any post-hoc analysis. OLS regression (η on 23 UTC-hour dummies plus asset dummy): R² = 0.352, F = 2.56, p(bootstrap) = 0.001.
+OLS regression (η on 23 UTC-hour dummies plus asset dummy): R² = 0.352, F = 2.56, p(bootstrap) = 0.001.
 
-ETH shows a sharper UTC-13:30 spike in slow SELL→BUY cross-excitation than BTC, roughly double its rest-of-day baseline, with no BTC counterpart. See [hawkes_lob_summary.md](hawkes_lob_summary.md) §5 for discussion.
+ETH shows a sharper UTC-13:30 spike in slow SELL→BUY cross-excitation than BTC, roughly double its rest-of-day baseline, with no BTC counterpart.
 
 ## Model
 
@@ -84,7 +83,7 @@ The time-rescaling test (Ogata 1988) checks whether compensator increments Λ_B(
 
 Collapsing sub-100µs same-direction events into single events (a heuristic approximation of the order-book filtration approach in [Anantha, Jain and Maiti 2025](https://arxiv.org/abs/2507.22712)) drops KS to 0.016 to 0.038 across all sampled windows.
 
-![GOF robustness](results/gof_robustness.png)
+![GOF robustness](hawkes/results/gof_robustness.png)
 
 ## Reproducibility
 
@@ -162,22 +161,22 @@ hawkes-lob/
 ├── collector/                  # C++ WebSocket client
 │   ├── CMakeLists.txt
 │   └── main.cpp
-├── data/                       # Not tracked in git due to size; regenerate via preprocess.py
-│   ├── btcusdt_mo.csv          # preprocessed market orders (4.3M rows)
-│   └── ethusdt_mo.csv          # preprocessed market orders (3.5M rows)
-├── results/
-│   ├── results_btcusdt.csv     # 144 windows × 12 parameters
-│   ├── results_ethusdt.csv     # 145 windows × 12 parameters
-│   ├── kernel_norms_by_hour.png
-│   ├── gof_baseline.png
-│   ├── gof_sweep_comparison.png
-│   ├── gof_robustness.png
-│   ├── ks_vs_threshold.png
-│   └── eta_vs_rv.png
-├── calibration.ipynb
-├── preprocess.py
-├── requirements.txt
-├── hawkes_lob_summary.md
+├──hawkes/
+|   ├── data/                       # Not tracked in git due to size; regenerate via preprocess.py
+|   │   ├── btcusdt_mo.csv          # preprocessed market orders (4.3M rows)
+|   │   └── ethusdt_mo.csv          # preprocessed market orders (3.5M rows)
+|   ├── results/
+|   │   ├── results_btcusdt.csv     # 144 windows × 12 parameters
+|   │   ├── results_ethusdt.csv     # 145 windows × 12 parameters
+|   │   ├── kernel_norms_by_hour.png
+|   │   ├── gof_baseline.png
+|   │   ├── gof_sweep_comparison.png
+|   │   ├── gof_robustness.png
+|   │   ├── ks_vs_threshold.png
+|   │   └── eta_vs_rv.png
+|   ├── calibration.ipynb
+|   ├── preprocess.py
+|   ├── requirements.txt
 ├── CITATION.cff
 ├── README.md
 └── LICENSE
