@@ -2,9 +2,8 @@
 
 Bivariate Sum-of-Exponentials Hawkes calibration on Binance BTC/USDT and ETH/USDT market-order arrivals, with rolling hourly recalibration over a one-week May 2026 dataset. The repository contains the C++ WebSocket collector, the calibration notebook, and the full set of figures and tables from rolling calibration and time-rescaling goodness-of-fit (GOF) diagnostics.
 
-[Python 3.11](https://www.python.org/)
-[License: MIT](LICENSE)
-
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Motivation
 
@@ -19,7 +18,7 @@ Recent Hawkes-based limit-order-book studies, including the work of Anantha and 
 - Demonstrates that time-rescaling Kolmogorov–Smirnov goodness-of-fit fails on raw `aggTrade` streams ($KS \approx 0.50$–$0.62$) because unresolved sweep-fill microstructure occurs at sub-100µs timescales relative to the 10ms excitation kernel.
 - Introduces a 100µs same-direction time-gap aggregation heuristic, approximating the filtration framework of Anantha Jain, Sobin Joseph, and Maiti (2025), which reduces KS statistics by 91–97% and suggests that filtration choice materially affects Hawkes calibration quality in cryptocurrency LOB data.
 
-GOF sweep comparison
+![GOF sweep comparison](hawkes/results/gof_sweep_comparison.png)
 
 ## Key Results
 
@@ -39,7 +38,7 @@ Approximately 62% of raw `aggTrade` BUY events in the first window are sub-100µ
 
 ### 2 · Branching ratio $\eta$ predicts realized volatility within the hour
 
-η vs Realized Volatility
+![η vs Realized Volatility](hawkes/results/eta_vs_rv.png)
 
 
 | Asset    | $\rho(\eta, RV)$ | p-value | n windows |
@@ -54,7 +53,7 @@ UTC hour alone explains **35 to 39%** of cross-window variance in $\eta$ (OLS F-
 
 Despite operating 24/7 with no formal session boundary, crypto market microstructure is not time-homogeneous. Self-excitation peaks at UTC 13:30 (NYSE regular open, 9:30 AM EDT) for both assets.
 
-Kernel norms by UTC hour
+![Kernel norms by UTC hour](hawkes/results/kernel_norms_by_hour.png)
 
 > Magnitudes are from raw `aggTrade` streams and are inflated by sweep-fill fragmentation; the qualitative UTC-13:30 pattern is robust to aggregation.
 
@@ -105,7 +104,7 @@ The time-rescaling test (Ogata 1988) checks whether compensator increments $\Lam
 
 Collapsing sub-100µs same-direction events into single events (a heuristic approximation of the order-book filtration approach in [Anantha, Jain and Maiti 2025](https://arxiv.org/abs/2507.22712)) drops KS to 0.016 to 0.038 across all sampled windows.
 
-GOF robustness
+![GOF robustness](hawkes/results/gof_robustness.png)
 
 ## Reproducibility
 
