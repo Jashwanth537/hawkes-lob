@@ -7,12 +7,17 @@ authors:
     affiliation: IIT Guwahati 2024
 title: "Hawkes Process Calibration of Cryptocurrency Limit Order Book Data"
 abstract: >
-  Bivariate Sum-of-Exponentials Hawkes calibration on Binance BTC/USDT and
-  ETH/USDT market order flow (144-145 one-hour windows, May 2026). Key
-  findings: UTC-driven intraday seasonality in self-excitation (η 9-12%
-  higher at NYSE open, OLS R²=0.35, p<0.001); η-RV Spearman correlation
-  ρ=0.84; 91-97% GOF improvement via 100µs sweep-fill aggregation across
-  all UTC hours.
+  A bivariate Sum-of-Exponentials Hawkes model is calibrated on BUY/SELL
+  market order arrivals from Binance BTC/USDT and ETH/USDT limit order book
+  data (144 to 145 rolling one-hour windows, May 2026). Mann-Whitney tests
+  reject time-homogeneity at UTC 13:30 (NYSE regular open) on both assets
+  (p < 0.005), and an OLS regression of the branching ratio η on UTC-hour
+  dummies explains 35 to 39% of cross-window variance (R² = 0.352, bootstrap
+  p = 0.001). η correlates with hourly realized volatility at Spearman
+  ρ = 0.84. The time-rescaling Kolmogorov-Smirnov test fails on raw aggTrade
+  streams (KS ≈ 0.50 to 0.62) and recovers after collapsing sub-100µs sweep
+  fills into single events (KS ≈ 0.02 to 0.04), mirroring the order-ID-based
+  filtration in Anantha, Jain and Maiti (2025).
 version: "1.0.0"
 date-released: "2026-05-19"
 url: "https://github.com/Jashwanth537/hawkes-lob"
