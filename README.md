@@ -3,7 +3,6 @@
 Bivariate Sum-of-Exponentials Hawkes calibration on Binance BTC/USDT and ETH/USDT market-order arrivals, with rolling hourly recalibration over a one-week May 2026 dataset. The repository contains the C++ WebSocket collector, the calibration notebook, and the full set of figures and tables from rolling calibration and time-rescaling goodness-of-fit (GOF) diagnostics.
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Motivation
 
@@ -238,7 +237,3 @@ Preprocessed CSVs (`data/*_mo.csv`) are excluded from git tracking due to size. 
   url    = {https://github.com/Jashwanth537/hawkes-lob}
 }
 ```
-
-## License
-
-MIT. See [LICENSE](LICENSE).
