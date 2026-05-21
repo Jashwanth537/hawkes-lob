@@ -237,3 +237,4 @@ Preprocessed CSVs (`data/*_mo.csv`) are excluded from git tracking due to size. 
   url    = {https://github.com/Jashwanth537/hawkes-lob}
 }
 ```
+Copyright (c) 2026 Jashwanth Mummalaneni. All rights reserved.
