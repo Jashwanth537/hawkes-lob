@@ -219,10 +219,12 @@ Preprocessed CSVs (`data/*_mo.csv`) are excluded from git tracking due to size. 
 
 - Anantha, A. N. and Jain, S. (2025). *Forecasting high frequency order flow imbalance using Hawkes processes.* Computational Economics. [arXiv:2408.03594](https://arxiv.org/abs/2408.03594)
 - Anantha, A. N., Jain, S. and Maiti, P. (2025). *Order Book Filtration and Directional Signal Extraction at High Frequency.* [arXiv:2507.22712](https://arxiv.org/abs/2507.22712)
-- Bacry, E., Jaisson, T. and Muzy, J.-F. (2016). *Quantitative Finance* 16(8).
-- Hardiman, S. J., Bercot, N. and Bouchaud, J.-P. (2013). *European Physical Journal B* 86(10).
-- Filimonov, V. and Sornette, D. (2012). [arXiv:1204.2406](https://arxiv.org/abs/1204.2406)
+- E. Bacry, I. Mastromatteo, and J.F. Muzy. Hawkes processes in finance. Market Microstructure and
+Liquidity, 1(01):1550005, 2015. [arXiv:1502.04592](https://arxiv.org/abs/1502.04592)
+- Filimonov, V., & Sornette, D. (2012). Quantifying reflexivity in financial markets: toward a prediction of flash crashes. Physical review. E, Statistical, nonlinear, and soft matter physics, 85 5 Pt 2, 056108 .[	arXiv:1201.3572](https://arxiv.org/abs/1201.3572)
+- Ozaki, T. (1979). Maximum likelihood estimation of Hawkes' self-exciting point processes. Annals of the Institute of Statistical Mathematics, 31, 145-155.
 - Ogata, Y. (1988). Statistical models for earthquake occurrences. *JASA* 83(401).
+- Hawkes, A. G. (1971a). Spectra of self-exciting and mutually exciting point processes,Biometrika,58, 83–90.
 
 
 ## Citation
