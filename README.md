@@ -15,7 +15,7 @@ Recent Hawkes-based limit-order-book studies, including the work of Anantha and 
 - Identifies statistically significant UTC-clock self-excitation patterns despite the absence of formal session structure: a Mann–Whitney test rejects time-homogeneity around the NYSE regular open (UTC 13:30) for both assets ($p < 0.005$), while UTC-hour fixed effects explain 35–39% of cross-window variance in excitation strength ($R^2 = 0.352$, bootstrap $p = 0.001$).
 - Shows that the Hawkes branching ratio $\eta$ closely tracks hourly realized volatility (Spearman $\rho = 0.84$), linking self-excitation intensity to observable market activity.
 - Demonstrates that time-rescaling Kolmogorov–Smirnov goodness-of-fit fails on raw `aggTrade` streams ($KS \approx 0.50$–$0.62$) because unresolved sweep-fill microstructure occurs at sub-100µs timescales relative to the 10ms excitation kernel.
-- Introduces a 100µs same-direction time-gap aggregation heuristic, approximating the filtration framework of Anantha Jain, Sobin Joseph, and Maiti (2025), which reduces KS statistics by 91–97% and suggests that filtration choice materially affects Hawkes calibration quality in cryptocurrency LOB data.
+- Introduces a 100µs same-direction time-gap aggregation heuristic, that reduces KS statistics by 91–97% and suggests that filtration choice materially affects Hawkes calibration quality in cryptocurrency LOB data.
 
 ![GOF sweep comparison](hawkes/results/gof_sweep_comparison.png)
 
@@ -101,7 +101,7 @@ See `calibration.ipynb` Cell 5 for the full synthetic recovery test.
 
 The time-rescaling test (Ogata 1988) checks whether compensator increments $\Lambda_B(t_{i-1}, t_i)$ are i.i.d. $\text{Exp}(1)$. Raw `aggTrade` streams contain sweep fills: a single aggressive order sweeping N price levels generates N rows within ~100µs. The 10ms kernel cannot resolve these, producing heavy-tailed GOF failure ($KS \approx 0.5$ to $0.6$) across all hours.
 
-Collapsing sub-100µs same-direction events into single events (a heuristic approximation of the order-book filtration approach in [Anantha, Jain and Maiti 2025](https://arxiv.org/abs/2507.22712)) drops KS to 0.016 to 0.038 across all sampled windows.
+Collapsing sub-100µs same-direction events into single events drops KS to 0.016 to 0.038 across all sampled windows.
 
 ![GOF robustness](hawkes/results/gof_robustness.png)
 
@@ -208,8 +208,8 @@ Preprocessed CSVs (`data/*_mo.csv`) are excluded from git tracking due to size. 
 
 ## Future Work
 
-- **Apply the order-level filtration of Anantha, Jain and Maiti (2025).** The 100µs sweep-gap heuristic is a time-gap proxy for their principled order-ID-based filtration; implementing the original method on a dataset that exposes lifecycle IDs would quantify how much information the proxy preserves.
-- **Forecasting linkage to Anantha and Jain (2025).** Test whether the UTC-hour seasonality in the kernel norms $\varphi$ predicts short-term order flow imbalance, which is the original forecasting question of the source paper.
+- **Apply the order-level filtration** Implementing the filtration method on a dataset that exposes lifecycle IDs would quantify how much information the aggregation preserves.
+- **Forecasting OFI.** Test whether the UTC-hour seasonality in the kernel norms $\varphi$ predicts short-term order flow imbalance.
 - **Third exponential component at $\beta_3 \approx 10000\text{s}^{-1}$ (~100µs scale)** to capture sweep-fill substructure within the model itself, rather than discarding it via aggregation.
 - **Adaptive decay-rate selection.** Replace fixed $\beta_1 = 100$, $\beta_2 = 1$ with profile-likelihood or cross-validation-based selection per window.
 - **Re-run rolling calibration on sweep-aggregated streams** to confirm the UTC-13:30 seasonality persists after aggregation; current rolling figures use raw streams.
@@ -219,13 +219,11 @@ Preprocessed CSVs (`data/*_mo.csv`) are excluded from git tracking due to size. 
 
 - Anantha, A. N. and Jain, S. (2025). *Forecasting high frequency order flow imbalance using Hawkes processes.* Computational Economics. [arXiv:2408.03594](https://arxiv.org/abs/2408.03594)
 - Anantha, A. N., Jain, S. and Maiti, P. (2025). *Order Book Filtration and Directional Signal Extraction at High Frequency.* [arXiv:2507.22712](https://arxiv.org/abs/2507.22712)
-- Joseph, S. S. and Jain, S. (2024). Non-parametric Hawkes on cryptocurrency LOB. [arXiv:2402.04740](https://arxiv.org/abs/2402.04740)
-- Ogata, Y. (1988). Statistical models for earthquake occurrences. *JASA* 83(401).
 - Bacry, E., Jaisson, T. and Muzy, J.-F. (2016). *Quantitative Finance* 16(8).
 - Hardiman, S. J., Bercot, N. and Bouchaud, J.-P. (2013). *European Physical Journal B* 86(10).
 - Filimonov, V. and Sornette, D. (2012). [arXiv:1204.2406](https://arxiv.org/abs/1204.2406)
-- Almgren, R. and Chriss, N. (2001). *Journal of Risk* 3(2).
-- Cartea, Á., Jaimungal, S. and Penalva, J. (2015). *Algorithmic and High-Frequency Trading.* Cambridge.
+- Ogata, Y. (1988). Statistical models for earthquake occurrences. *JASA* 83(401).
+
 
 ## Citation
 
