@@ -15,7 +15,7 @@ Recent Hawkes-based limit-order-book studies, including the work of Anantha and 
 - Identifies statistically significant UTC-clock self-excitation patterns despite the absence of formal session structure: a Mann–Whitney test rejects time-homogeneity around the NYSE regular open (UTC 13:30) for both assets ($p < 0.005$), while UTC-hour fixed effects explain 35–39% of cross-window variance in excitation strength ($R^2 = 0.352$, bootstrap $p = 0.001$).
 - Shows that the Hawkes branching ratio $\eta$ closely tracks hourly realized volatility (Spearman $\rho = 0.84$), linking self-excitation intensity to observable market activity.
 - Demonstrates that time-rescaling Kolmogorov–Smirnov goodness-of-fit fails on raw `aggTrade` streams ($KS \approx 0.50$–$0.62$) because unresolved sweep-fill microstructure occurs at sub-100µs timescales relative to the 10ms excitation kernel.
-- Introduces a 100µs same-direction time-gap aggregation heuristic, that reduces KS statistics by 91–97% and suggests that filtration choice materially affects Hawkes calibration quality in cryptocurrency LOB data.
+- Introduces a 100µs same-direction time-gap aggregation heuristic, which reduces KS statistics by 91–97% and suggests that filtration choice materially affects Hawkes calibration quality in cryptocurrency LOB data.
 
 ![GOF sweep comparison](hawkes/results/gof_sweep_comparison.png)
 
@@ -221,6 +221,8 @@ Preprocessed CSVs (`data/*_mo.csv`) are excluded from git tracking due to size. 
 - Anantha, A. N., Jain, S. and Maiti, P. (2025). *Order Book Filtration and Directional Signal Extraction at High Frequency.* [arXiv:2507.22712](https://arxiv.org/abs/2507.22712)
 - E. Bacry, I. Mastromatteo, and J.F. Muzy. Hawkes processes in finance. Market Microstructure and
 Liquidity, 1(01):1550005, 2015. [arXiv:1502.04592](https://arxiv.org/abs/1502.04592)
+- Joseph, S., & Jain, S. (2024). Non-Parametric Estimation of Multi-dimensional Marked Hawkes Processes. ArXiv, abs/2402.04740.
+- Fabre, T., & Muni Toke, I. (2025). Neural Hawkes: non-parametric estimation in high dimension and causality analysis in cryptocurrency markets. Quantitative Finance, 25(5), 671–698.
 - Filimonov, V., & Sornette, D. (2012). Quantifying reflexivity in financial markets: toward a prediction of flash crashes. Physical review. E, Statistical, nonlinear, and soft matter physics, 85 5 Pt 2, 056108 .[	arXiv:1201.3572](https://arxiv.org/abs/1201.3572)
 - Ozaki, T. (1979). Maximum likelihood estimation of Hawkes' self-exciting point processes. Annals of the Institute of Statistical Mathematics, 31, 145-155.
 - Ogata, Y. (1988). Statistical models for earthquake occurrences. *JASA* 83(401).
