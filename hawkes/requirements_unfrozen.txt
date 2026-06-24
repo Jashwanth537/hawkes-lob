@@ -6,3 +6,5 @@ jupyterlab
 ipykernel
 numba
 tqdm
+pyarrow
+psutil

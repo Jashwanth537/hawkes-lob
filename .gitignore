@@ -1,9 +1,22 @@
 build/
 *.csv
 *.log
+*.parquet
+*.zip
 hawkes/data/
 hawkes/build/
 hawkes/results/*.csv
 hawkes/dev.ipynb
-hawkes/.DS_Store
-hawkes/.ipynb_checkpoints/
+hawkes/anaconda_projects/
+hawkes/.virtual_documents/
+
+# editor / OS / jupyter cruft
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/.ipynb_checkpoints/
+
+# phase result caches
+!hawkes/results/phase0_*.csv
+!hawkes/results/phase1a_*.csv
+!hawkes/results/phase1b_*.csv
